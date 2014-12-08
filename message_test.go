@@ -13,8 +13,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hlandauf/btcwire"
 	"github.com/davecgh/go-spew/spew"
+	"github.com/hlandauf/btcwire"
 )
 
 // makeHeader is a convenience function to make a message header in the form of

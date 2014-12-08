@@ -10,8 +10,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/hlandauf/btcwire"
 	"github.com/davecgh/go-spew/spew"
+	"github.com/hlandauf/btcwire"
 )
 
 // TestPing tests the MsgPing API against the latest protocol version.

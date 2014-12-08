@@ -123,10 +123,22 @@ func TstReadBlockHeader(r io.Reader, pver uint32, bh *BlockHeader) error {
 	return readBlockHeader(r, pver, bh)
 }
 
+// TstReadBlockHeaderHeader makes the internal readBlockHeaderHeader function available to
+// the test package.
+func TstReadBlockHeaderHeader(r io.Reader, pver uint32, bh *BlockHeaderHeader) error {
+	return readBlockHeaderHeader(r, pver, bh)
+}
+
 // TstWriteBlockHeader makes the internal writeBlockHeader function available to
 // the test package.
 func TstWriteBlockHeader(w io.Writer, pver uint32, bh *BlockHeader) error {
 	return writeBlockHeader(w, pver, bh)
+}
+
+// TstWriteBlockHeaderHeader makes the internal writeBlockHeaderHeader function available to
+// the test package.
+func TstWriteBlockHeaderHeader(w io.Writer, pver uint32, bh *BlockHeaderHeader) error {
+	return writeBlockHeaderHeader(w, pver, bh)
 }
 
 // TstReadMessageHeader makes the internal readMessageHeader function available

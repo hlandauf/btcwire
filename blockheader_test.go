@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hlandauf/btcwire"
 	"github.com/davecgh/go-spew/spew"
+	"github.com/hlandauf/btcwire"
 )
 
 // TestBlockHeader tests the BlockHeader API.
@@ -53,7 +53,7 @@ func TestBlockHeaderWire(t *testing.T) {
 
 	// baseBlockHdr is used in the various tests as a baseline BlockHeader.
 	bits := uint32(0x1d00ffff)
-	baseBlockHdr := &btcwire.BlockHeader{
+	baseBlockHdr := &btcwire.BlockHeaderHeader{
 		Version:    1,
 		PrevBlock:  mainNetGenesisHash,
 		MerkleRoot: mainNetGenesisMerkleRoot,
@@ -79,8 +79,8 @@ func TestBlockHeaderWire(t *testing.T) {
 	}
 
 	tests := []struct {
-		in   *btcwire.BlockHeader // Data to encode
-		out  *btcwire.BlockHeader // Expected decoded data
+		in   *btcwire.BlockHeaderHeader // Data to encode
+		out  *btcwire.BlockHeaderHeader // Expected decoded data
 		buf  []byte               // Wire encoding
 		pver uint32               // Protocol version for wire encoding
 	}{
@@ -129,7 +129,7 @@ func TestBlockHeaderWire(t *testing.T) {
 	for i, test := range tests {
 		// Encode to wire format.
 		var buf bytes.Buffer
-		err := btcwire.TstWriteBlockHeader(&buf, test.pver, test.in)
+		err := btcwire.TstWriteBlockHeaderHeader(&buf, test.pver, test.in)
 		if err != nil {
 			t.Errorf("writeBlockHeader #%d error %v", i, err)
 			continue
@@ -141,9 +141,9 @@ func TestBlockHeaderWire(t *testing.T) {
 		}
 
 		// Decode the block header from wire format.
-		var bh btcwire.BlockHeader
+		var bh btcwire.BlockHeaderHeader
 		rbuf := bytes.NewReader(test.buf)
-		err = btcwire.TstReadBlockHeader(rbuf, test.pver, &bh)
+		err = btcwire.TstReadBlockHeaderHeader(rbuf, test.pver, &bh)
 		if err != nil {
 			t.Errorf("readBlockHeader #%d error %v", i, err)
 			continue
@@ -162,7 +162,7 @@ func TestBlockHeaderSerialize(t *testing.T) {
 
 	// baseBlockHdr is used in the various tests as a baseline BlockHeader.
 	bits := uint32(0x1d00ffff)
-	baseBlockHdr := &btcwire.BlockHeader{
+	baseBlockHdr := &btcwire.BlockHeaderHeader{
 		Version:    1,
 		PrevBlock:  mainNetGenesisHash,
 		MerkleRoot: mainNetGenesisMerkleRoot,
@@ -188,8 +188,8 @@ func TestBlockHeaderSerialize(t *testing.T) {
 	}
 
 	tests := []struct {
-		in  *btcwire.BlockHeader // Data to encode
-		out *btcwire.BlockHeader // Expected decoded data
+		in  *btcwire.BlockHeaderHeader // Data to encode
+		out *btcwire.BlockHeaderHeader // Expected decoded data
 		buf []byte               // Serialized data
 	}{
 		{
@@ -215,7 +215,7 @@ func TestBlockHeaderSerialize(t *testing.T) {
 		}
 
 		// Deserialize the block header.
-		var bh btcwire.BlockHeader
+		var bh btcwire.BlockHeaderHeader
 		rbuf := bytes.NewReader(test.buf)
 		err = bh.Deserialize(rbuf)
 		if err != nil {

@@ -12,8 +12,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hlandauf/btcwire"
 	"github.com/davecgh/go-spew/spew"
+	"github.com/hlandauf/btcwire"
 )
 
 // TestAddr tests the MsgAddr API.

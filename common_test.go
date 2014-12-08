@@ -12,8 +12,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hlandauf/btcwire"
 	"github.com/davecgh/go-spew/spew"
+	"github.com/hlandauf/btcwire"
 )
 
 // mainNetGenesisHash is the hash of the first block in the block chain for the
