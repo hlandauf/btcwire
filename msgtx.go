@@ -139,6 +139,10 @@ type MsgTx struct {
 	LockTime uint32
 }
 
+func (msg *MsgTx) IsNamecoin() bool {
+  return msg.Version == 0x7100
+}
+
 // AddTxIn adds a transaction input to the message.
 func (msg *MsgTx) AddTxIn(ti *TxIn) {
 	msg.TxIn = append(msg.TxIn, ti)
